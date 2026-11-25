@@ -1,11 +1,6 @@
 name: kf_bf
 dependencies:
-- python
+- python=3.12
 - pip
-- ipython
-- jupyter
-- matplotlib
-- scipy
-- sympy
 - pip:
-  - filterpy
+  - -r requirements.txt
