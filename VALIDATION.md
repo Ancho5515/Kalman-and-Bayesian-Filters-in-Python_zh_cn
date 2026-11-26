@@ -17,7 +17,7 @@
 | 预期教学异常 | 第 14 章第 92 号单元的 `ValueError`，核对异常类型与信息后继续 |
 | 数值与算法专项检查 | 9 / 9 通过 |
 | 检查器回归检查 | 6 / 6 通过 |
-| `git diff --check` | 通过 |
+| 完整 PR 差异的 `git diff --check` | 通过；已清理上游 `contributing.md` 的三处行尾空格 |
 
 执行环境为 Python 3.12.14，核心包版本见 `requirements.txt`。运行检查通过独立 IPython 进程逐格执行临时副本，不改写原书文件。第 12 章残差重采样函数另外单独调用；只执行函数定义不能发现全局变量或错误采样分布的问题。
 
@@ -57,8 +57,10 @@ python tools/check_translation.py --render build/html
 python tools/run_smoke.py
 python tools/check_numerics.py
 python tools/test_review_checks.py
-git diff --check
+git diff --check 9e3d2f6ed023d937587cf2ef2ecfbf7afc3d8054 HEAD
 ```
+
+续接验收时，已确认远程提交 `e49dfaa499ce84b27752e09310c551b22eb3fadd` 的文件树与上轮本地审核结果一致，重新通过全部结构与 HTML 检查、9 项数值检查和 6 项检查器回归检查，并核对既有的 23 个 Notebook、609 个代码单元执行日志。上面的差异命令覆盖 PR 相对于原 `master` 起点的全部变化。
 
 结构与摘要检查不判断译文的完整性或科学正确性；出现中文字符也不表示没有漏译。行内公式不受独立公式摘要保护，本轮通过对照和重点复核检查。逐格执行只验证代码可执行，不能替代数值结论的验证。
 
