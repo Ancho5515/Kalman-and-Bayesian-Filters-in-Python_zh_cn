@@ -2,7 +2,7 @@
 
 这是 Roger R. Labbe Jr. 所著 [Kalman and Bayesian Filters in Python](https://github.com/rlabbe/Kalman-and-Bayesian-Filters-in-Python) 的简体中文版本。通过可运行的 Python 示例，逐步学习贝叶斯滤波、卡尔曼滤波、UKF、EKF、粒子滤波和平滑。
 
-**从[中文目录](table_of_contents.ipynb)开始阅读。** 当前已覆盖全书现有 Notebook 的讲解文字；这是中文初稿，翻译来源、校订范围与原著尚未完成的部分见 [TRANSLATION.md](TRANSLATION.md)。英文项目说明保存在 [README.en.md](README.en.md)。
+**从[中文目录](table_of_contents.ipynb)开始阅读。** 当前已覆盖全书现有 Notebook 的讲解文字，并完成一轮逐章技术审校，修正误译、补充原著勘误及示例算法修复。审核结论见 [REVIEW.md](REVIEW.md)，翻译来源、修订范围与原著尚未完成的部分见 [TRANSLATION.md](TRANSLATION.md)。英文项目说明保存在 [README.en.md](README.en.md)。
 
 ## 在线阅读
 
@@ -49,9 +49,13 @@ python3.12 -m venv .venv
 python tools/check_translation.py
 python tools/check_translation.py --render build/html
 python tools/run_smoke.py
+python tools/check_numerics.py
+python tools/test_review_checks.py
 ```
 
-第一个命令校验全部 44 个 Notebook 的结构、625 段独立公式、示例代码块、输出与本地文件链接；第二个同时导出 HTML，并检查指向同一章节内部的锚点；第三个逐一执行主目录全部 23 个 Notebook 的代码。运行检查在临时副本中执行，不覆盖书中保存的图表。
+第一个命令校验全部 44 个 Notebook 的结构、625 段独立公式、示例代码块、输出及本地文件链接，也检查根目录说明文档的本地链接；第二个同时导出 HTML，并检查同章及跨 Notebook 的锚点；第三个逐一执行主目录全部 23 个 Notebook 的代码。后两个命令直接验证残差重采样的采样分布、数学勘误，以及检查器能否拒绝未经记录的改动。运行检查在临时副本中执行，不覆盖书中保存的图表。
+
+原著中一处独立公式括号、一处示例导入名和一处残差重采样算法已明确修订；检查器逐项核对这些修订，其余内容继续与原始基线比较。详情见 [VALIDATION.md](VALIDATION.md)。
 
 第 14 章有一格刻意演示 IMM 状态维度不一致时的 `ValueError`，这是教材反例。自动校验会核对该异常；在 Jupyter 中阅读时，看到该异常后可继续运行后面的单元。
 
