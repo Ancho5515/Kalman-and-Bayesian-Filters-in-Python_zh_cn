@@ -181,3 +181,8 @@ def set_style():
         IPython.OutputArea.auto_scroll_threshold = 9999;
     '''
     return HTML(style)
+
+
+def load_style():
+    """Keep older notebooks' style entry point compatible with set_style()."""
+    return set_style()
